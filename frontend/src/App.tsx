@@ -1,4 +1,3 @@
-```javascript
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 
 // Layout Components
