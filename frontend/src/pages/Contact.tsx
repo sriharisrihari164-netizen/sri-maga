@@ -21,10 +21,11 @@ const Contact = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('submitting');
-    
+
     try {
+      const apiUrl = `${import.meta.env.VITE_API_BASE_URL}/api/contact`;
       // API call to the backend
-      const response = await fetch('/api/contact', {
+      const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -46,7 +47,7 @@ const Contact = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
-      
+
       {/* Page Header */}
       <section className="bg-slateGray py-20 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-iceBlue/20 via-transparent to-transparent pointer-events-none" />
@@ -63,9 +64,9 @@ const Contact = () => {
       {/* Main Content */}
       <section className="py-20 flex-grow relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           <div className="bg-white rounded-3xl shadow-xl overflow-hidden flex flex-col lg:flex-row border border-gray-100 relative z-10">
-            
+
             {/* Contact Information Side */}
             <div className="lg:w-2/5 bg-slateGray text-white p-10 md:p-14 relative overflow-hidden">
               {/* Decorative Background */}
@@ -76,7 +77,7 @@ const Contact = () => {
                 <div>
                   <h3 className="text-3xl font-bold mb-2">Contact Info</h3>
                   <div className="w-12 h-1 bg-alertOrange rounded-full mb-10" />
-                  
+
                   <ul className="space-y-8">
                     <li className="flex items-start space-x-4">
                       <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center shrink-0">
@@ -157,7 +158,7 @@ const Contact = () => {
                   </div>
                   <h4 className="text-2xl font-bold mb-2">Message Sent!</h4>
                   <p>Thank you for contacting us. Our support team will reach out to you shortly.</p>
-                  <button 
+                  <button
                     onClick={() => setStatus('idle')}
                     className="mt-6 px-6 py-2 bg-white border-2 border-green-600 text-green-700 font-semibold rounded-full hover:bg-green-50 transition-colors"
                   >
@@ -166,16 +167,16 @@ const Contact = () => {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6 relative">
-                  
+
                   {/* Form fields */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <label htmlFor="name" className="block text-sm font-semibold text-slateGray mb-2">Full Name *</label>
-                      <input 
-                        type="text" 
-                        id="name" 
-                        name="name" 
-                        required 
+                      <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        required
                         value={formData.name}
                         onChange={handleChange}
                         className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-alertOrange focus:border-transparent outline-none transition-all bg-gray-50 hover:bg-white focus:bg-white"
@@ -184,11 +185,11 @@ const Contact = () => {
                     </div>
                     <div>
                       <label htmlFor="phone" className="block text-sm font-semibold text-slateGray mb-2">Phone Number *</label>
-                      <input 
-                        type="tel" 
-                        id="phone" 
-                        name="phone" 
-                        required 
+                      <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        required
                         value={formData.phone}
                         onChange={handleChange}
                         className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-alertOrange focus:border-transparent outline-none transition-all bg-gray-50 hover:bg-white focus:bg-white"
@@ -200,10 +201,10 @@ const Contact = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <label htmlFor="email" className="block text-sm font-semibold text-slateGray mb-2">Email Address</label>
-                      <input 
-                        type="email" 
-                        id="email" 
-                        name="email" 
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
                         value={formData.email}
                         onChange={handleChange}
                         className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-alertOrange focus:border-transparent outline-none transition-all bg-gray-50 hover:bg-white focus:bg-white"
@@ -212,9 +213,9 @@ const Contact = () => {
                     </div>
                     <div>
                       <label htmlFor="serviceType" className="block text-sm font-semibold text-slateGray mb-2">Service Required *</label>
-                      <select 
-                        id="serviceType" 
-                        name="serviceType" 
+                      <select
+                        id="serviceType"
+                        name="serviceType"
                         required
                         value={formData.serviceType}
                         onChange={handleChange}
@@ -232,10 +233,10 @@ const Contact = () => {
 
                   <div>
                     <label htmlFor="message" className="block text-sm font-semibold text-slateGray mb-2">Detailed Message *</label>
-                    <textarea 
-                      id="message" 
-                      name="message" 
-                      rows={5} 
+                    <textarea
+                      id="message"
+                      name="message"
+                      rows={5}
                       required
                       value={formData.message}
                       onChange={handleChange}
@@ -250,8 +251,8 @@ const Contact = () => {
                     </div>
                   )}
 
-                  <button 
-                    type="submit" 
+                  <button
+                    type="submit"
                     disabled={status === 'submitting'}
                     className={`w-full py-4 rounded-lg font-bold text-white shadow-lg transition-all duration-300 flex items-center justify-center group
                       ${status === 'submitting' ? 'bg-gray-400 cursor-not-allowed' : 'bg-alertOrange hover:bg-orange-600 hover:-translate-y-1 hover:shadow-xl'}
@@ -275,17 +276,17 @@ const Contact = () => {
                 </form>
               )}
             </div>
-            
+
           </div>
         </div>
 
         {/* Decorative Map Section */}
         <div className="absolute top-0 left-0 w-full h-[600px] bg-iceBlue/20 pointer-events-none -z-10 mt-64 border-y border-gray-200">
-             {/* Note: This is a placeholder for an iframe map to keep design clean and performant. In production, insert real Google Maps iframe here. */}
-             <div className="w-full h-full flex flex-col items-center justify-center text-slateGray/30 space-y-4">
-               <MapPin className="w-16 h-16" />
-               <span className="text-xl font-bold uppercase tracking-widest">Interactive Map Placeholder</span>
-             </div>
+          {/* Note: This is a placeholder for an iframe map to keep design clean and performant. In production, insert real Google Maps iframe here. */}
+          <div className="w-full h-full flex flex-col items-center justify-center text-slateGray/30 space-y-4">
+            <MapPin className="w-16 h-16" />
+            <span className="text-xl font-bold uppercase tracking-widest">Interactive Map Placeholder</span>
+          </div>
         </div>
       </section>
 
