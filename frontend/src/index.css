@@ -1,6 +1,10 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --color-iceBlue: #E2F1F8;
+  --color-slateGray: #708090;
+  --color-alertOrange: #FF5722;
+}
 
 @layer base {
   body {
